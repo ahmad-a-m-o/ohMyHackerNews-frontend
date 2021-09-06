@@ -4,7 +4,10 @@ import Home from "../views/Home.vue";
 import About from "../views/About";
 import Login from "../views/Login";
 import Signup from "../views/Signup";
-import Profile from "../views/Profile"
+import Profile from "../views/Profile";
+import News from "../views/News";
+import ComposeNews from "../views/ComposeNews";
+import myPosts from "../views/myPosts";
 import store from "../store";
 
 
@@ -38,7 +41,29 @@ const routes = [
     name: "Profile",
     component: Profile,
     meta: {loginRequired: true},
-  }
+  },
+  {
+    path: '/news/:id', 
+    name: 'news', 
+    component: News
+  },
+  {
+    path: '/news',
+    name: 'news',
+    component: Home
+  },
+  {
+    path: '/compose',
+    name: 'compose',
+    component: ComposeNews,
+    meta: {loginRequired: true},
+  },
+  {
+    path: '/myposts',
+    name: 'myposts',
+    component: myPosts,
+    meta: {loginRequired: true},
+  },
 ];
 
 const router = new VueRouter({
