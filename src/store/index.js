@@ -7,8 +7,16 @@ export default new Vuex.Store({
   state: {
     isAuthtenticated: false,
     token: '', 
+    fetchedNewsHeader: [],
+    composeData: {title: '', content: '', },
   },
   mutations: {
+    addNewsHeder(state, header){
+      state.fetchedNewsHeader.push(header);
+    },
+    dropNewsHeaders(state){
+      state.fetchedNewsHeader = [];
+    },
     onStart(state){
       state.token = localStorage.getItem('token');
       if( state.token && state.token!='' )
@@ -25,6 +33,8 @@ export default new Vuex.Store({
       state.token = '';
       localStorage.removeItem('token');
     },
+    updateComposeData_content(state, value){state.composeData.content = value},
+    updateComposeData_title(state, value){state.composeData.title = value},
   },
   actions: {},
   modules: {},
