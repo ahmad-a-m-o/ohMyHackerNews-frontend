@@ -23,6 +23,7 @@ export default {
   methods:{
     signup: function(){
       console.log('account created!');
+      this.$vToastify.success("Account created");
       this.$router.push('/login');
     }
   },

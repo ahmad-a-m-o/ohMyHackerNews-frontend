@@ -25,8 +25,11 @@ export default {
       content: function(){this.enContent = btoa(this.$store.state.composeData.content)},  // create base64 of content
   },
   methods:{
+      clean: function(){this.$store.commit("cleanComposeData")},
       send: function(){
           console.log(this.title,this.enContent);
+          this.$vToastify.success("your news sent");
+          this.clean();
       },
   },
 };
