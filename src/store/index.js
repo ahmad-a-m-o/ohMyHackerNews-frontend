@@ -35,6 +35,7 @@ export default new Vuex.Store({
     },
     updateComposeData_content(state, value){state.composeData.content = value},
     updateComposeData_title(state, value){state.composeData.title = value},
+    cleanComposeData(state){state.composeData.title = ''; state.composeData.content = '';},
   },
   actions: {},
   modules: {},
