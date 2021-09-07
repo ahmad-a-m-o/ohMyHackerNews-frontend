@@ -14,6 +14,9 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.config.productionTip = false;
 
+import VueToastify from "vue-toastify";
+Vue.use(VueToastify);
+
 new Vue({
   router,
   store,
