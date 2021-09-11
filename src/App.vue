@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <NavBar class="mb-5 sticky-top"/>
-    <router-view class="container"/>
+    <NavBar class="mb-5 sticky-top" />
+    <router-view class="container" />
   </div>
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue';
+import NavBar from "@/components/NavBar.vue";
 export default {
-  components:{
+  components: {
     NavBar,
   },
-  mounted(){
-    this.$store.commit('onStart');
+  mounted() {
+    this.$store.commit("onStart");
   },
-}
+};
 </script>
