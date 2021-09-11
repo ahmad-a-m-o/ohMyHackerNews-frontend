@@ -10,7 +10,6 @@ import ComposeNews from "../views/ComposeNews";
 import myPosts from "../views/myPosts";
 import store from "../store";
 
-
 Vue.use(VueRouter);
 
 const routes = [
@@ -28,41 +27,41 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
-    meta: {loginRejected: true},
+    meta: { loginRejected: true },
   },
   {
     path: "/signup",
     name: "Signup",
     component: Signup,
-    meta: {loginRejected: true},
+    meta: { loginRejected: true },
   },
   {
     path: "/profile",
     name: "Profile",
     component: Profile,
-    meta: {loginRequired: true},
+    meta: { loginRequired: true },
   },
   {
-    path: '/news/:id', 
-    name: 'news', 
-    component: News
+    path: "/news/:id",
+    name: "news",
+    component: News,
   },
   {
-    path: '/news',
-    name: 'news',
-    component: Home
+    path: "/news",
+    name: "news",
+    component: Home,
   },
   {
-    path: '/compose',
-    name: 'compose',
+    path: "/compose",
+    name: "compose",
     component: ComposeNews,
-    meta: {loginRequired: true},
+    meta: { loginRequired: true },
   },
   {
-    path: '/myposts',
-    name: 'myposts',
+    path: "/myposts",
+    name: "myposts",
     component: myPosts,
-    meta: {loginRequired: true},
+    meta: { loginRequired: true },
   },
 ];
 
@@ -70,20 +69,20 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to,from,next)=>{
-  if(to.matched.some(r=>r.meta.loginRequired)){
-      if(store.state.isAuthtenticated){
-        next();
-      }else{
-        next('/login');
-      }
-  }else if(to.matched.some(r=>r.meta.loginRejected)){
-      if(store.state.isAuthtenticated){
-        next('/');
-      }else{
-        next();
-      }
-  }else next();
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((r) => r.meta.loginRequired)) {
+    if (store.state.isAuthtenticated) {
+      next();
+    } else {
+      next("/login");
+    }
+  } else if (to.matched.some((r) => r.meta.loginRejected)) {
+    if (store.state.isAuthtenticated) {
+      next("/");
+    } else {
+      next();
+    }
+  } else next();
 });
 
 export default router;
