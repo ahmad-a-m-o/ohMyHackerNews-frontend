@@ -1,4 +1,5 @@
 <template>
+  <b-overlay :show="this.isloading" rounded="sm">
   <div class="home">
     <b-icon
       @click="refresh"
@@ -19,6 +20,7 @@
         :author="author"
         :idC="idC"
         :likes="likes"
+        :showLikeBtn="true"
       />
     </div>
     <div class="d-flex justify-content-center">
@@ -30,15 +32,9 @@
       >
         more
       </b-button>
-      <b-spinner
-        class="mb-5"
-        style="width: 3rem; height: 3rem; center"
-        label="Large Spinner"
-        type="grow"
-        v-if="this.isloading"
-      ></b-spinner>
     </div>
   </div>
+  </b-overlay>
 </template>
 
 <script>
