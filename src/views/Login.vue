@@ -47,6 +47,8 @@ export default {
           if (res.data.token) {
             this.$vToastify.success("Logen in");
             this.$store.commit("login", res.data.token);
+            let userInfo = {'name': res.data.name, '_id': res.data._id, 'email': res.data.email};
+            this.$store.commit("setUserInfo", userInfo);
             this.$router.push("/");
           } else {
             this.$vToastify.error("Unknown error");
