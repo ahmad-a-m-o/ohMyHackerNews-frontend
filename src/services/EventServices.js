@@ -1,4 +1,5 @@
 import axios from "axios";
+import {store} from '../store/index'
 
 const client = axios.create({
   baseURL: "http://localhost:5000", // change it!
@@ -8,6 +9,13 @@ const client = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+client.interceptors.response.use(null, function (error) {
+  if (error.response.status === 403) {
+    store.commit("logout");
+  }
+  return Promise.reject(error)
+})
 
 export default {
   newsH(n, m) {
