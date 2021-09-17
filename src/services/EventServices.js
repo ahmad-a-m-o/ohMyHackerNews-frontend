@@ -43,4 +43,12 @@ export default {
   myposts(token) {
     return client.post("/myposts", {token});
   },
+  // like a post
+  addLike(token, headerID){
+    return client.post("/like/add", {token, headerID});
+  },
+  // dislike a post
+  disLike(token, headerID){
+    return client.post("/like/remove", {token, headerID});
+  },
 };
