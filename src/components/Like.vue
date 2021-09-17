@@ -22,7 +22,7 @@ export default {
                         this.liked = false; this.bufferdLikes--;
                     } else this.likeError(res.data.err);
                 })
-                .catch((e)=>this.likeError(e));
+                .catch((e)=>this.likeError('Please Login first'));
         },
         addLike(){
             EventServices.addLike(this.$store.state.token, this.$parent.id)
@@ -31,7 +31,7 @@ export default {
                         this.liked = true; this.bufferdLikes++;
                     } else this.likeError(res.data.err);
                 })
-                .catch((e)=>this.likeError(e));
+                .catch((e)=>this.likeError('Please Login first'));
         },
         likeError(msg){this.$vToastify.error(msg)},
     },
