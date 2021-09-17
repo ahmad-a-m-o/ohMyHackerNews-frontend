@@ -1,10 +1,11 @@
 <template>
+  <b-overlay :show="this.isloading" rounded="sm">
   <div class="myposts">
    <div
       v-for="{ id, idC, date, title, author } in this.$store.state.fetchedMyPostsH"
       :key="idC"
     >
-      <NewsHead :id="id" :date="date" :title="title" :author="author" />
+      <NewsHead :id="id" :idC="idC" :date="date" :title="title" :author="author" :showLikeBtn="false" />
     </div>
     <div class="d-flex justify-content-center">
       <b-button
@@ -14,13 +15,6 @@
         v-if="this.$store.state.fetchedMyPostsH.length<this.myPostsID.length">
         more
       </b-button>
-      <b-spinner
-        class="mb-5"
-        style="width: 3rem; height: 3rem; center"
-        label="Large Spinner"
-        type="grow"
-        v-if="this.isloading"
-      ></b-spinner>
     </div>
     <b-icon
       @click="refresh"
@@ -30,6 +24,7 @@
       font-scale="3"
     ></b-icon>
   </div>
+  </b-overlay>
 </template>
 
 <script>
@@ -66,21 +61,22 @@ export default {
       this.$store.commit("dropMyPosts");
       this.loadMyPostsId();
     },
-    loadMyPostsH: function(from){
+    loadMyPostsH: async function(from){
       this.isloading = true;
-      if(this.myPostsID.length == 0){ this.loadMyPostsId() }
-      for(let i=from; i<from+N; i++){
-        console.log("from" , from, from+N, i)
-        if(i>=this.myPostsID.length) break;
-        EventServices.newsH2(this.myPostsID[i]).then((res)=>{
-          let r = res.data;
-          let obj = { id: r._id, date: r.date, title: r.title, author: r.author, idC: r.counter, };
-          this.$store.commit("addToMyPosts", obj);
-        }).catch(()=>this.$vToastify.error("ops!"));
+      if(this.myPostsID.length == 0) this.loadMyPostsId();
+      try{
+        for(let i=from; i<from+N; i++){
+          if(i>=this.myPostsID.length) break;
+          await EventServices.newsH2(this.myPostsID[i]).then((res)=>{
+            let r = res.data;
+            let obj = { id: r._id, date: r.date, title: r.title, author: r.author, idC: r.counter, likes: r.likes, };
+            this.$store.commit("addToMyPosts", obj);
+          }).catch(()=>this.$vToastify.error("ops!"));
+        }
+      }finally{
+        this.isloading = false;
+        this.$store.commit("addToCursor", N);
       }
-      this.isloading = false;
-      //this.$store.state.cursor += N;
-      this.$store.commit("addToCursor", N);
     },
     loadMyPostsId: function () {
       EventServices.myposts(this.$store.state.token).then((res)=>{
