@@ -29,6 +29,9 @@ export default new Vuex.Store({
     addToMyPosts(state, postH){
       state.fetchedMyPostsH.push(postH);
     },
+    dropMyPosts(state){
+      state.fetchedMyPostsH = [];
+    },
     ///////// set m_counter += 1  -  set it's value
     m_counter_pp(state) {
       state.m_counter = state.m_counter + 1;
