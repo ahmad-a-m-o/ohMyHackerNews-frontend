@@ -1,6 +1,6 @@
 <template>
   <div class="card mb-4">
-    <div class="card-header">Author: {{ this.author }}</div>
+    <div class="card-header"> Author: {{ this.author }} <Like style="float: right"/> </div>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
         {{ this.title }} <br />
@@ -18,14 +18,20 @@
 </template>
 
 <script>
+import Like from '@/components/Like.vue';
+
 export default {
   name: "NewsHead",
+  components:{
+    Like,
+  },
   props: {
     id: String,
     idC: Number,
     author: String,
     title: String,
     date: String,
+    likes: Array,
   },
 };
 </script>
