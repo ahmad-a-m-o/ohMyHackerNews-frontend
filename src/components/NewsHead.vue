@@ -1,6 +1,6 @@
 <template>
   <div class="card mb-4">
-    <div class="card-header"> Author: {{ this.author }} <Like style="float: right"/> </div>
+    <div class="card-header"> Author: {{ this.author }} <Like v-if="this.showLikeBtn" style="float: right"/> </div>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
         {{ this.title }} <br />
@@ -32,6 +32,7 @@ export default {
     title: String,
     date: String,
     likes: Array,
+    showLikeBtn: Boolean,
   },
 };
 </script>
