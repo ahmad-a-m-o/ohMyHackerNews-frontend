@@ -9,9 +9,9 @@
         this is your token: <br />
         {{ this.$store.state.token }} <br />
         ============================= <br />
-        <b-footer class="blockquote-footer">
+        <em class="blockquote-footer">
           dont share your token with others!!
-        </b-footer>
+        </em>
       </blockquote>
     </div>
   </div>
