@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     isAuthtenticated: false,
     token: "",
+    userInfo: {},
     m_counter: 1,     // use while loading headers, m_counter is m th N rows of news headers
     cursor: 0,      // used in myPosts, for loading from index=cursor
     fetchedNewsHeader: [],    // headers of news - fetched in home page
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     composeData: { title: "", content: "" },    // used in compose page - keeps title and content of users
   },
   mutations: {
+    setUserInfo(state, info){
+      state.userInfo = info;
+    },
     ///////// add value to cursor  -  set it's value
     addToCursor(state, n){
       state.cursor += n
@@ -24,9 +28,6 @@ export default new Vuex.Store({
     ///////// add new header to fetchedMyPostsH  -  drop it
     addToMyPosts(state, postH){
       state.fetchedMyPostsH.push(postH);
-    },
-    dropMyPosts(state){
-      state.fetchedMyPostsH = []
     },
     ///////// set m_counter += 1  -  set it's value
     m_counter_pp(state) {
@@ -58,7 +59,7 @@ export default new Vuex.Store({
       state.isAuthtenticated = false;
       state.token = "";
       localStorage.removeItem("token");
-      this.dropMyPosts();
+      state.fetchedMyPostsH = [];
     },
     ///////// set composeData title and content  -  clear it
     updateComposeData_content(state, value) {
