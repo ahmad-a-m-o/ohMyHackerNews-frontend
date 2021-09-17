@@ -8,7 +8,7 @@
       font-scale="3"
     ></b-icon>
     <div
-      v-for="{ id, idC, date, title, author } in this.$store.state
+      v-for="{ id, idC, date, title, author, likes } in this.$store.state
         .fetchedNewsHeader"
       :key="idC"
     >
@@ -18,6 +18,7 @@
         :title="title"
         :author="author"
         :idC="idC"
+        :likes="likes"
       />
     </div>
     <div class="d-flex justify-content-center">
@@ -74,6 +75,7 @@ export default {
               title: r.title,
               author: r.author,
               idC: r.counter,
+              likes: r.likes,
             };
             this.$store.commit("addNewsHeder", obj);
           });
