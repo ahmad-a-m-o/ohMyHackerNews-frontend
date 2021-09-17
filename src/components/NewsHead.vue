@@ -5,7 +5,7 @@
       <blockquote class="blockquote mb-0">
         {{ this.title }} <br />
         <em class="blockquote-footer">
-          Message id: {{ this.id }} at {{ this.date }}
+          Message id: {{ this.idC }} at {{ this.date }}
           <router-link
             :to="{ name: 'news', params: { id: this.id } }"
             style="position: absolute; right: 2%"
