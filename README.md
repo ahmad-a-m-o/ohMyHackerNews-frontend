@@ -1,6 +1,7 @@
 # frontend
 
 ## Project setup
+test1
 ```
 npm install
 ```
@@ -16,6 +17,7 @@ npm run build
 ```
 
 ### Lints and fixes files
+test2
 ```
 npm run lint
 ```
