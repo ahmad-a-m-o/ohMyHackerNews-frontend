@@ -1,8 +1,4 @@
 TEST MEST
-dljlkj
-
-111111111111111111111111111111111111111111
-
 # frontend
 
 ## Project setup
